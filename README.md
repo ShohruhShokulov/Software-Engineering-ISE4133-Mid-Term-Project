@@ -1,6 +1,8 @@
+I'll update the README.md to reflect the new Streamlit-based web interface. Here's the updated version:
+
 # Smart Travel Assistant 🌎
 
-A comprehensive travel planning application that combines route planning, natural language processing, voice navigation, and real-time information services to create an intelligent travel companion.
+A comprehensive web-based travel planning application built with Streamlit that combines route planning, natural language processing, voice navigation guidance, and real-time information services to create an intelligent travel companion.
 
 ## Table of Contents
 - [Features](#features)
@@ -12,6 +14,7 @@ A comprehensive travel planning application that combines route planning, natura
 - [API Documentation](#api-documentation)
 - [Project Structure](#project-structure)
 - [Technical Details](#technical-details)
+- [Web Interface](#web-interface)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -19,47 +22,47 @@ A comprehensive travel planning application that combines route planning, natura
 
 ### 🗺️ Core Functionality
 - **Route Planning**: Calculate optimal routes between locations with support for multiple transportation modes
-- **Multi-Stop Journeys**: Plan complex trips with multiple waypoints
+- **Multi-Stop Journeys**: Plan complex trips with multiple waypoints through an intuitive web interface
 - **Natural Language Processing**: Understand travel queries in plain English using GPT
-- **Voice Navigation**: Text-to-speech functionality for hands-free navigation
+- **Voice Navigation Guidance**: Text-based turn-by-turn directions (voice synthesis subject to browser support)
 - **Real-time Weather**: Get current weather conditions for origin and destination
 - **Fuel Cost Calculator**: Estimate trip expenses based on vehicle type and current fuel prices
 - **Points of Interest**: Discover restaurants, gas stations, hotels, and other POIs along your route
-- **Interactive Maps**: Generate visual route maps with Folium
+- **Interactive Maps**: Generate visual route maps with Folium and Streamlit integration
 - **Favorites Management**: Save and quickly access frequent locations
 
 ### 🎯 Key Features
+- Modern web interface built with Streamlit
 - Support for car, bike, and walking routes
 - Avoid highways, tolls, and ferries options
-- Voice-guided turn-by-turn directions
+- Turn-by-turn directions display
 - Weather-aware trip planning
 - Fuel consumption and cost estimates
 - POI discovery using OpenStreetMap data
 - Natural language query processing
-- Cross-platform compatibility
+- Interactive map visualization
+- Cross-browser compatibility
 
 ## Architecture
 
-The application follows a modular architecture with specialized components:
+The application has been refactored from a CLI-based system to a modern web application using Streamlit:
 
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│                 │     │                  │     │                 │
-│   Main App      │────▶│  Core Services   │────▶│  External APIs  │
+│   Streamlit     │     │                  │     │                 │
+│   Web Interface │────▶│  Core Services   │────▶│  External APIs  │
 │   (main.py)     │     │  (route_planner, │     │  (GraphHopper,  │
 │                 │     │   geocoding,     │     │   OpenWeather,  │
 │                 │     │   travel_assist) │     │   OpenAI)       │
-│                 │     │                  │     │                 │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
          │                       │                        
          │                       │                        
          ▼                       ▼                        
 ┌─────────────────┐     ┌──────────────────┐              
-│                 │     │                  │              
-│  UI/Voice       │     │  Data Services   │              
-│  (colorama,     │     │  (favorites,     │              
-│   pyttsx3)      │     │   POI finder)    │              
-│                 │     │                  │              
+│   Map Display   │     │                  │              
+│   (Folium +     │     │  Data Services   │              
+│   Streamlit)    │     │  (favorites,     │              
+│                 │     │   POI finder)    │              
 └─────────────────┘     └──────────────────┘              
 ```
 
@@ -67,17 +70,17 @@ The application follows a modular architecture with specialized components:
 
 ### System Requirements
 - Python 3.8 or higher
-- Linux/Unix system (for text-to-speech support)
+- Modern web browser (Chrome, Firefox, Safari, Edge)
 - Internet connection for API services
 
 ### Required System Packages
-For Ubuntu/Debian systems:
+For Ubuntu/Debian systems (optional for voice features):
 ```bash
 sudo apt update
 sudo apt install espeak libespeak1
 ```
 
-These packages are required for the text-to-speech functionality.
+Note: The web version provides text-based navigation guidance as a fallback if voice synthesis is not supported by the browser.
 
 ## Installation
 
@@ -128,40 +131,50 @@ OPENAI_API_KEY=your_openai_api_key
 ## Usage
 
 ### Starting the Application
+Run the Streamlit app:
 ```bash
-python main.py
+streamlit run main.py
 ```
 
-### Main Menu Options
+The application will open in your default web browser, typically at `http://localhost:8501`
 
-1. **Plan a Route**: Basic point-to-point navigation
-2. **Multi-Stop Journey**: Plan trips with multiple waypoints
-3. **Natural Language Planning**: Use conversational queries like "I want to drive from Boston to NYC avoiding highways"
-4. **Manage Favorite Locations**: Save frequently used addresses
-5. **Voice Navigation**: Get spoken turn-by-turn directions
-6. **Trip Calculator**: Estimate fuel costs and travel time
-7. **Find Points of Interest**: Discover nearby amenities
-8. **Generate Interactive Map**: Create visual route representations
-9. **Exit**: Close the application
+### Web Interface Navigation
 
-### Example Commands
+The application features a sidebar with the following sections:
 
-#### Natural Language Queries
-- "I want to drive from Boston to NYC avoiding highways"
-- "Plan a bike route from Central Park to Brooklyn Bridge"
-- "Find the fastest route from the airport to downtown without tolls"
+1. **🗺️ Route Planning**: Basic point-to-point navigation with vehicle and avoidance options
+2. **🚏 Multi-Stop Journey**: Plan trips with multiple waypoints
+3. **💬 Natural Language**: Use conversational queries for route planning
+4. **⭐ Favorites**: Manage saved locations for quick access
+5. **🎤 Voice Navigation**: Get step-by-step directions (text-based with optional voice)
+6. **🧮 Trip Calculator**: Estimate fuel costs and travel time with detailed metrics
+7. **📍 Find POIs**: Discover nearby amenities with customizable search radius
+8. **🗺️ Interactive Map**: Generate visual route representations with Folium
 
-#### Voice Commands
-The application will speak directions like:
-- "Your journey will be 235 miles and take approximately 4 hours 15 minutes"
-- "Step 1: Head north on Main Street for 0.5 miles"
-- "Step 2: Turn right onto Highway 95"
+### Feature Details
+
+#### Route Planning
+- Select origin and destination from favorites or enter custom addresses
+- Choose between car, bike, or walking
+- Toggle options to avoid highways, tolls, or ferries
+- View distance, duration, fuel cost, and weather information
+- Access turn-by-turn directions
+
+#### Natural Language Planning
+- Enter queries like "I want to drive from Boston to NYC avoiding highways"
+- Automatic parsing of origin, destination, vehicle type, and preferences
+- Intelligent fallback to regex parsing if GPT is unavailable
+
+#### Interactive Map
+- Visualize routes with markers for origin and destination
+- Interactive Folium maps embedded in the web interface
+- Option to generate Google Maps links for external navigation
 
 ## Project Structure
 
 ```
 smart-travel-assistant/
-├── main.py                 # Application entry point
+├── main.py                 # Streamlit web application
 ├── requirements.txt        # Python dependencies
 ├── .env                   # API keys (not in repository)
 ├── .gitignore            # Git ignore rules
@@ -188,42 +201,84 @@ smart-travel-assistant/
 
 ### Core Technologies
 
+- **Streamlit**: Web application framework
 - **Python 3.8+**: Primary programming language
+- **Folium**: Interactive map generation
+- **Streamlit-Folium**: Integration for map display
 - **Requests**: HTTP client for API communication
 - **OpenAI**: Natural language processing
-- **pyttsx3**: Text-to-speech engine
-- **Folium**: Interactive map generation
-- **Colorama**: Terminal text formatting
 - **python-dotenv**: Environment variable management
 
-### External APIs
+### Web Interface Components
 
-1. **GraphHopper API**
-   - Endpoint: `https://graphhopper.com/api/1/`
-   - Used for: Routing, geocoding
-   - Rate limits: Varies by plan
+- **Session State Management**: Persistent data across page reloads
+- **Custom CSS Styling**: Enhanced visual appearance
+- **Responsive Layout**: Adapts to different screen sizes
+- **Interactive Widgets**: Sliders, checkboxes, selectboxes for user input
+- **Tab-based Navigation**: Organized feature sections
+- **Real-time Updates**: Dynamic content rendering
 
-2. **OpenWeatherMap API**
-   - Endpoint: `http://api.openweathermap.org/data/2.5/`
-   - Used for: Current weather data
-   - Rate limits: 60 calls/minute (free tier)
+### Voice Navigation Adaptation
 
-3. **OpenAI API**
-   - Model: GPT-3.5-turbo
-   - Used for: Natural language understanding
-   - Rate limits: Based on subscription
+The web version includes a `SimpleVoiceHandler` class that:
+- Displays route directions as formatted text
+- Provides step-by-step navigation guidance
+- Includes fallback messages for browser compatibility
 
-4. **OpenStreetMap Overpass API**
-   - Endpoint: `http://overpass-api.de/api/interpreter`
-   - Used for: POI discovery
-   - Rate limits: Fair use policy
+## Deployment Options
 
-### Key Algorithms
+### Local Development
+```bash
+streamlit run main.py
+```
 
-1. **Route Optimization**: Uses GraphHopper's routing engine with configurable parameters
-2. **Natural Language Processing**: Leverages GPT-3.5 for query understanding with fallback regex parsing
-3. **Geocoding**: Converts addresses to coordinates using GraphHopper's geocoding service
-4. **Fuel Calculation**: Estimates costs based on distance, vehicle efficiency, and fuel prices
+### Production Deployment
+1. **Streamlit Cloud**: Deploy directly from GitHub repository
+2. **Docker**: Containerize the application for consistent deployment
+3. **Cloud Platforms**: Deploy on AWS, Google Cloud, or Azure with appropriate configurations
+
+## Browser Compatibility
+
+The application is tested on:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+Note: Voice synthesis features may vary by browser support.
+
+## Performance Optimization
+
+- Efficient session state management
+- Caching for API responses
+- Lazy loading of map components
+- Optimized route calculations
+
+## Security Considerations
+
+- API keys stored in environment variables
+- Input validation for all user entries
+- HTTPS enforcement in production
+- No client-side storage of sensitive data
+
+## Future Enhancements
+
+- Real-time traffic integration
+- User authentication and personalized routes
+- Route sharing functionality
+- Mobile-responsive design improvements
+- Advanced caching strategies
+- Offline map support
+- Integration with booking services
+
+## Troubleshooting
+
+### Common Issues
+
+1. **API Key Errors**: Ensure all API keys are correctly set in the `.env` file
+2. **Map Display Issues**: Check browser compatibility with Folium
+3. **Voice Features**: Verify browser support for text-to-speech
+4. **Slow Performance**: Consider implementing caching for frequent routes
 
 ## Contributing
 
@@ -241,32 +296,8 @@ We welcome contributions! Please follow these steps:
 - Add docstrings to all functions and classes
 - Include unit tests for new features
 - Update documentation as needed
-- Keep commits atomic and well-described
-
-## Error Handling
-
-The application includes comprehensive error handling for:
-- API failures and rate limits
-- Invalid user inputs
-- Network connectivity issues
-- Missing dependencies
-- File system operations
-
-## Security Considerations
-
-- API keys are stored in environment variables
-- No sensitive data is logged or stored in plain text
-- Input validation prevents injection attacks
-- External API calls use HTTPS
-
-## Future Enhancements
-
-- Mobile application development
-- Real-time traffic integration
-- Machine learning for route optimization
-- Multi-language support
-- Offline mapping capabilities
-- Integration with ride-sharing services
+- Test across multiple browsers
+- Ensure responsive design compatibility
 
 ## License
 
@@ -274,6 +305,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
+- Streamlit team for the excellent web framework
 - GraphHopper for routing services
 - OpenStreetMap contributors for map data
 - OpenAI for natural language processing capabilities
