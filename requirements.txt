@@ -6,3 +6,5 @@ geopy==2.4.0
 openai==0.28.0
 colorama==0.4.6
 geocoder==1.38.1
+streamlit==1.45.0
+streamlit-folium==0.25.0
