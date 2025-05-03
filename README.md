@@ -1,5 +1,3 @@
-I'll update the README.md to reflect the new Streamlit-based web interface. Here's the updated version:
-
 # Smart Travel Assistant 🌎
 
 A comprehensive web-based travel planning application built with Streamlit that combines route planning, natural language processing, voice navigation guidance, and real-time information services to create an intelligent travel companion.
