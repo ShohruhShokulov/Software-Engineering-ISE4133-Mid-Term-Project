@@ -10,7 +10,7 @@ An intelligent, AI-powered travel planning system that combines route planning, 
 ## 📖 Documentation
 
 - 📑 [Detailed Project Documentation](docs/README.md)
-- 📝 [Mid-term Project Report](docs/Mid-term_report.docx.docx)
+- 📝 [Mid-term Project Report](docs/Mid-term_report.docx)
 - 🎯 [Presentation Slides](docs/presentation.pptx)
 - 🎬 [Team Video Demonstrations](https://drive.google.com/drive/folders/1FRznzqwMkxYZPBJg0VmyU0MaRdcZOHRW)
 
