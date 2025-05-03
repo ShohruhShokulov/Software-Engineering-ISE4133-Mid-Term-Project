@@ -1,0 +1,8 @@
+requests==2.31.0
+python-dotenv==1.0.0
+pyttsx3==2.90
+folium==0.14.0
+geopy==2.4.0
+openai==0.28.0
+colorama==0.4.6
+geocoder==1.38.1
