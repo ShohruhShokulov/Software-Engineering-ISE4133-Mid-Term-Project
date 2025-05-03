@@ -6,6 +6,7 @@ An intelligent, AI-powered travel planning system that combines route planning, 
 
 🌐 **Try it now:** [Smart Travel Assistant](https://travelasistant.streamlit.app/)  
 🎥 **Demo Video:** 
+[Screencast from 2025년 05월 03일 21시 52분 57초.webm](https://github.com/user-attachments/assets/33581c80-67b2-40a4-a9ec-fa198ff82ae1)
 
 ## 📖 Documentation
 
